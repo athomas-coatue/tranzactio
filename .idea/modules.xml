@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/project-tranzactio-build.iml" filepath="$PROJECT_DIR$/.idea/modules/project-tranzactio-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/projects-tranzactio.iml" filepath="$PROJECT_DIR$/.idea/modules/projects-tranzactio.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/tranzactio.iml" filepath="$PROJECT_DIR$/.idea/modules/tranzactio.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/tranzactio-build.iml" filepath="$PROJECT_DIR$/.idea/modules/tranzactio-build.iml" />
     </modules>

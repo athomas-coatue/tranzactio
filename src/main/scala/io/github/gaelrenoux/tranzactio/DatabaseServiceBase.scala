@@ -17,7 +17,8 @@ abstract class DatabaseServiceBase[Connection <: Has[_] : Tag](connectionSource:
     (implicit errorStrategies: ErrorStrategiesRef): ZIO[R, Either[DbException, E], A] =
     ZIO.accessM[R] { r =>
       runTransaction({ c: JdbcConnection =>
-        connectionFromJdbc(c).map(r ++ _).flatMap(zio.provide(_))
+        val t: ZIO[Any, E, A] = connectionFromJdbc(c).map(r ++ _).flatMap(zio.provide(_))
+        t
       }, commitOnFailure)
     }
 
@@ -25,7 +26,8 @@ abstract class DatabaseServiceBase[Connection <: Has[_] : Tag](connectionSource:
     (implicit errorStrategies: ErrorStrategiesRef): ZIO[R, Either[DbException, E], A] = {
     ZIO.accessM[R] { r =>
       runAutoCommit { c: JdbcConnection =>
-        connectionFromJdbc(c).map(r ++ _).flatMap(zio.provide(_))
+        val t: ZIO[Any, E, A] = connectionFromJdbc(c).map(r ++ _).flatMap(zio.provide(_))
+        t
       }
     }
   }
