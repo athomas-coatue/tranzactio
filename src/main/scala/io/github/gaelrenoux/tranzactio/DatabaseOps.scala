@@ -14,7 +14,7 @@ trait DatabaseOps[Connection, R0] {
   protected def mixHasUnit(r0: R0): R0 with Has[Unit]
 
   /** Method that should be implemented by subclasses, to provide the connection. Full (not partial) application. */
-  private[tranzactio] def transactionRFull[R <: Has[_], E, A](
+  def transactionRFull[R <: Has[_], E, A](
       zio: ZIO[R with Connection, E, A],
       commitOnFailure: Boolean = false
   )(implicit errorStrategies: ErrorStrategiesRef): ZIO[R with R0, Either[DbException, E], A]
@@ -58,7 +58,7 @@ trait DatabaseOps[Connection, R0] {
 
 
   /** Method that should be implemented by subclasses, to provide the connection. Full (not partial) application. */
-  private[tranzactio] def autoCommitRFull[R <: Has[_], E, A](
+  def autoCommitRFull[R <: Has[_], E, A](
       zio: ZIO[R with Connection, E, A]
   )(implicit errorStrategies: ErrorStrategiesRef): ZIO[R with R0, Either[DbException, E], A]
 

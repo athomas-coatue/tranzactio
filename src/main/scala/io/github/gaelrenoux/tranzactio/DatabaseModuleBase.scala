@@ -11,7 +11,6 @@ abstract class DatabaseModuleBase[Connection, Dbs <: DatabaseOps.ServiceOps[Conn
 
   type Database = Has[Dbs]
 
-  private[tranzactio]
   override def transactionRFull[R <: Has[_], E, A](
       zio: ZIO[R with Connection, E, A],
       commitOnFailure: Boolean = false
@@ -24,7 +23,6 @@ abstract class DatabaseModuleBase[Connection, Dbs <: DatabaseOps.ServiceOps[Conn
     }
   }
 
-  private[tranzactio]
   override def autoCommitRFull[R <: Has[_], E, A](
       zio: ZIO[R with Connection, E, A]
   )(implicit errorStrategies: ErrorStrategiesRef = ErrorStrategies.Parent): ZIO[Has[Dbs] with R, Either[DbException, E], A] = {
